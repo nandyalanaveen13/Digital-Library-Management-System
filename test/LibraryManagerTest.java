@@ -6,15 +6,15 @@ public class LibraryManagerTest {
     @Test
     void testAddBook() {
         LibraryManager library = new LibraryManager();
-        library.addBook("10", "Java Programming", "Naveen", "programming", true);
-        assertTrue(library.findBookById("10").isPresent());
+        library.addBook("101", "Java Programming", "John Doe", "Education", true);
+        assertTrue(library.findBookById("101").isPresent());
     }
 
     @Test
     void testDeleteBook() {
         LibraryManager library = new LibraryManager();
-        library.addBook("12", "Python Basics", "Srikanth", "Education", true);
-        library.deleteBook("12");
-        assertFalse(library.findBookById("12").isPresent());
+        library.addBook("102", "Python Basics", "Jane Doe", "Education", true);
+        library.deleteBook("102");
+        assertFalse(library.findBookById("102").isPresent());
     }
 }

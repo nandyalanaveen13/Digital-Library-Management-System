@@ -7,8 +7,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("1. Add a Book  2. View All Books  3. Search by ID or Title  ");
-            System.out.println("5. Update Book Details  6. Delete a Book Record 7. Exit System");
+            System.out.println("\n1. Add Book  2. View Books  3. Search by ID  4. Search by Title");
+            System.out.println("5. Update Book  6. Delete Book  7. Exit");
             System.out.print("Choose an option: ");
 
             int choice = scanner.nextInt();
@@ -21,8 +21,7 @@ public class Main {
                         System.out.print("Title: "); String title = scanner.nextLine();
                         System.out.print("Author: "); String author = scanner.nextLine();
                         System.out.print("Genre: "); String genre = scanner.nextLine();
-                        System.out.print("Available (true/false): ");
-                        boolean available = scanner.nextBoolean();
+                        System.out.print("Available (true/false): "); boolean available = scanner.nextBoolean();
                         library.addBook(id, title, author, genre, available);
                     }
                     case 2 -> library.viewAllBooks();
