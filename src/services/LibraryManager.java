@@ -3,7 +3,7 @@ import models.Book;
 import java.util.*;
 
 public class LibraryManager {
-    private Map<String, Book> books;
+    private final Map<String, Book> books; // Made 'books' final
 
     public LibraryManager() {
         this.books = new HashMap<>();
@@ -14,8 +14,7 @@ public class LibraryManager {
      */
     public void addBook(String bookId, String title, String author, String genre, boolean isAvailable) {
         if (books.containsKey(bookId)) throw new IllegalArgumentException("Book ID must be unique.");
-        Book newBook = new Book(bookId, title, author, genre, isAvailable);
-        books.put(bookId, newBook);
+        books.put(bookId, new Book(bookId, title, author, genre, isAvailable));
         System.out.println("Book added successfully.");
     }
 
@@ -50,12 +49,13 @@ public class LibraryManager {
      * Updates book details.
      */
     public void updateBook(String bookId, String newTitle, String newAuthor, boolean isAvailable) {
-        if (!books.containsKey(bookId)) throw new IllegalArgumentException("Book not found.");
-        Book book = books.get(bookId);
-        books.put(bookId, new Book(bookId,
-                newTitle.isEmpty() ? book.getTitle() : newTitle,
-                newAuthor.isEmpty() ? book.getAuthor() : newAuthor,
-                book.getGenre(), isAvailable));
+        books.computeIfPresent(bookId, (key, oldBook) -> new Book(
+                key,
+                newTitle.isEmpty() ? oldBook.getTitle() : newTitle,
+                newAuthor.isEmpty() ? oldBook.getAuthor() : newAuthor,
+                oldBook.getGenre(),
+                isAvailable
+        ));
         System.out.println("Book updated successfully.");
     }
 

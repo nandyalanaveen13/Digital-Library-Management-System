@@ -6,7 +6,7 @@ public class LibraryManagerTest {
     @Test
     void testAddBook() {
         LibraryManager library = new LibraryManager();
-        library.addBook("10", "Java Programming", "Naveen", "Education", true);
+        library.addBook("10", "Java Programming", "Naveen", "programming", true);
         assertTrue(library.findBookById("10").isPresent());
     }
 
